@@ -2,11 +2,12 @@
     x:Class="DatabaseEntityProofOfConcept.Views.InsertDataWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:DatabaseEntityProofOfConcept.Behaviors"
     xmlns:c="clr-namespace:DatabaseEntityProofOfConcept.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enumValues="clr-namespace:DatabaseEntityProofOfConcept.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:utils="clr-namespace:DatabaseEntityProofOfConcept.Utils"
-    xmlns:enumValues="clr-namespace:DatabaseEntityProofOfConcept.Extensions"
     Title="InsertDataWindow"
     Width="800"
     Height="450"
@@ -37,8 +38,14 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
-        <ListView Grid.Row="1" ItemsSource="{enumValues:EnumValues utils:Entities}" />
-        <ContentControl Grid.Row="1" Grid.Column="1" Style="{StaticResource InsertTemplateStyle}" />
+        <ListView
+            Grid.Row="1"
+            behaviors:SelectionChangedBehavior.SelectionChangedCommand="{Binding SelectionChangedCommand}"
+            ItemsSource="{enumValues:EnumValues utils:Entities}" />
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{StaticResource InsertTemplateStyle}" />
         <Button
             Grid.Row="2"
             Grid.Column="1"

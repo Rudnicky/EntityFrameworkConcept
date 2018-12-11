@@ -1,6 +1,7 @@
 ﻿using DatabaseEntityProofOfConcept.Commands;
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
+using System;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
@@ -66,6 +67,18 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                 }));
             }
         }
+
+        private ICommand _selectionChangedCommand;
+        public ICommand SelectionChangedCommand
+        {
+            get
+            {
+                return _selectionChangedCommand ?? (_selectionChangedCommand = new RelayCommand<object>(x =>
+                {
+                    SelectionChanged(x);
+                }));
+            }
+        }
         #endregion
 
         #region Constructor
@@ -85,6 +98,11 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
             _companyRepository.Insert(company);
             _companyRepository.Save();
+        }
+
+        private void SelectionChanged(object obj)
+        {
+            // TODO:
         }
         #endregion
     }
