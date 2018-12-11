@@ -102,7 +102,13 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
         private void SelectionChanged(object obj)
         {
-            // TODO:
+            CurrentEntity = ConvertToEntities<Entities>(obj);
+        }
+
+        public T ConvertToEntities<T>(object obj) 
+        {
+            T enumValue = (T)Enum.Parse(typeof(T), obj.ToString());
+            return enumValue;
         }
         #endregion
     }
