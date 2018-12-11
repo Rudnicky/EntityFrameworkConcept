@@ -2,6 +2,7 @@
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
 using System;
+using System.Linq;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
@@ -53,6 +54,62 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                 }
             }
         }
+
+        private string _employeeName;
+        public string EmployeeName
+        {
+            get { return _employeeName; }
+            set
+            {
+                if (_employeeName != value)
+                {
+                    _employeeName = value;
+                    OnPropertyChanged(nameof(EmployeeName));
+                }
+            }
+        }
+
+        private string _employeeSurname;
+        public string EmployeeSurname
+        {
+            get { return _employeeSurname; }
+            set
+            {
+                if (_employeeSurname != value)
+                {
+                    _employeeSurname = value;
+                    OnPropertyChanged(nameof(EmployeeSurname));
+                }
+            }
+        }
+
+        private string _employeeAge;
+        public string EmployeeAge
+        {
+            get { return _employeeAge; }
+            set
+            {
+                if (_employeeAge != value)
+                {
+                    _employeeAge = value;
+                    OnPropertyChanged(nameof(EmployeeAge));
+                }
+            }
+        }
+
+        private string _employeePosition;
+        public string EmployeePosition
+        {
+            get { return _employeePosition; }
+            set
+            {
+                if (_employeePosition != value)
+                {
+                    _employeePosition = value;
+                    OnPropertyChanged(nameof(EmployeePosition));
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -92,12 +149,46 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         #region Private Methods
         private void InsertDataButton_Clicked()
         {
-            var company = new Company();
-            company.Name = CompanyName;
-            company.Industry = CompanyIndustry;
+            switch (CurrentEntity)
+            {
+                case Entities.Company:
+                    InsertCompany();
+                    break;
+                case Entities.Employee:
+                    InsertEmployee();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void InsertCompany()
+        {
+            var company = new Company
+            {
+                Name = CompanyName,
+                Industry = CompanyIndustry
+            };
 
             _companyRepository.Insert(company);
             _companyRepository.Save();
+        }
+
+        private void InsertEmployee()
+        {
+            var company = _companyRepository.GetAll().FirstOrDefault(x => x.Name == "Avid");
+
+            var employee = new Employee
+            {
+                Name = EmployeeName,
+                Surname = EmployeeSurname,
+                Age = EmployeeAge,
+                Position = EmployeePosition,
+                CompanyId = company.CompanyId
+            };
+
+            _employeeRepository.Insert(employee);
+            _employeeRepository.Save();
         }
 
         private void SelectionChanged(object obj)

@@ -6,7 +6,27 @@
              xmlns:local="clr-namespace:DatabaseEntityProofOfConcept.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="{DynamicResource Application.Common.Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" Text=":: Employee ::" />
+        <TextBlock Grid.Row="1" Text="Name: " />
+        <TextBlock Grid.Row="2" Text="Surname: " />
+        <TextBlock Grid.Row="3" Text="Age: " />
+        <TextBlock Grid.Row="4" Text="Position: " />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EmployeeName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EmployeeSurname, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding EmployeeAge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding EmployeePosition, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
     </Grid>
 </UserControl>

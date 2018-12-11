@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:utils="clr-namespace:DatabaseEntityProofOfConcept.Utils"
     Title="InsertDataWindow"
+    x:Name="InsertWindow"
     Width="800"
     Height="450"
     mc:Ignorable="d">
@@ -16,13 +17,26 @@
         <DataTemplate x:Key="CompanyInsertControlDataTemplate">
             <c:CompanyInsertControl
                 Margin="20"
+                DataContext="{Binding ElementName=InsertWindow, Path=DataContext}"
                 CompanyIndustry="{Binding CompanyIndustry, Mode=TwoWay}"
                 CompanyName="{Binding CompanyName, Mode=TwoWay}" />
+        </DataTemplate>
+        <DataTemplate x:Key="EmployeeInsertControlDataTemplate">
+            <c:EmployeeInsertControl
+                Margin="20"
+                DataContext="{Binding ElementName=InsertWindow, Path=DataContext}"
+                EmployeeName="{Binding EmployeeName, Mode=TwoWay}"
+                EmployeeSurname="{Binding EmployeeSurname, Mode=TwoWay}"
+                EmployeeAge="{Binding EmployeeAge, Mode=TwoWay}"
+                EmployeePosition="{Binding EmployeePosition, Mode=TwoWay}" />
         </DataTemplate>
         <Style x:Key="InsertTemplateStyle" TargetType="{x:Type ContentControl}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CurrentEntity}" Value="{x:Static utils:Entities.Company}">
                     <Setter Property="ContentTemplate" Value="{DynamicResource CompanyInsertControlDataTemplate}" />
+                </DataTrigger>                
+                <DataTrigger Binding="{Binding CurrentEntity}" Value="{x:Static utils:Entities.Employee}">
+                    <Setter Property="ContentTemplate" Value="{DynamicResource EmployeeInsertControlDataTemplate}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>

@@ -1,28 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DatabaseEntityProofOfConcept.Controls
 {
-    /// <summary>
-    /// Interaction logic for EmployeeInsertControl.xaml
-    /// </summary>
     public partial class EmployeeInsertControl : UserControl
     {
+        #region Dependency Properties
+        public string EmployeeName
+        {
+            get { return (string)GetValue(EmployeeNameProperty); }
+            set { SetValue(EmployeeNameProperty, value); }
+        }
+        public static readonly DependencyProperty EmployeeNameProperty =
+            DependencyProperty.Register("EmployeeName", typeof(string), typeof(EmployeeInsertControl), new PropertyMetadata(string.Empty));
+
+        public string EmployeeSurname
+        {
+            get { return (string)GetValue(EmployeeSurnameProperty); }
+            set { SetValue(EmployeeSurnameProperty, value); }
+        }
+        public static readonly DependencyProperty EmployeeSurnameProperty =
+            DependencyProperty.Register("EmployeeSurname", typeof(string), typeof(EmployeeInsertControl), new PropertyMetadata(string.Empty));
+
+        public string EmployeeAge
+        {
+            get { return (string)GetValue(EmployeeAgeProperty); }
+            set { SetValue(EmployeeAgeProperty, value); }
+        }
+        public static readonly DependencyProperty EmployeeAgeProperty =
+            DependencyProperty.Register("EmployeeAge", typeof(string), typeof(EmployeeInsertControl), new PropertyMetadata(string.Empty));
+
+        public string EmployeePosition
+        {
+            get { return (string)GetValue(EmployeePositionProperty); }
+            set { SetValue(EmployeePositionProperty, value); }
+        }
+        public static readonly DependencyProperty EmployeePositionProperty =
+            DependencyProperty.Register("EmployeePosition", typeof(string), typeof(EmployeeInsertControl), new PropertyMetadata(string.Empty));
+        #endregion
+
+        #region Constructor
         public EmployeeInsertControl()
         {
             InitializeComponent();
         }
+        #endregion
     }
 }
