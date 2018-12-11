@@ -6,6 +6,31 @@ namespace DatabaseEntityProofOfConcept.Controls
 {
     public partial class EmployeeInsertControl : UserControl
     {
+        #region Fields & Properties
+        private Company _selectedCompany;
+        public Company SelectedCompany
+        {
+            get { return _selectedCompany; }
+            set
+            {
+                if (_selectedCompany != value)
+                {
+                    _selectedCompany = value;
+                }
+            }
+        }
+        #endregion
+
+        #region Routed Events
+        public event RoutedEventHandler CompanySelectionChanged
+        {
+            add { AddHandler(CompanySelectionChangedEvent, value); }
+            remove { RemoveHandler(CompanySelectionChangedEvent, value); }
+        }
+        public static readonly RoutedEvent CompanySelectionChangedEvent = EventManager.RegisterRoutedEvent(
+            "CompanySelectionChanged", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(EmployeeInsertControl));
+        #endregion
+
         #region Dependency Properties
         public string EmployeeName
         {
@@ -52,6 +77,19 @@ namespace DatabaseEntityProofOfConcept.Controls
         public EmployeeInsertControl()
         {
             InitializeComponent();
+        }
+        #endregion
+
+        #region Private Methods
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseSelectionChangedEvent();
+        }
+
+        private void RaiseSelectionChangedEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(EmployeeInsertControl.CompanySelectionChangedEvent);
+            RaiseEvent(newEventArgs);
         }
         #endregion
     }

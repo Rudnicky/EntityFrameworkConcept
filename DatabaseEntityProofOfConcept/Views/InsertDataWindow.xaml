@@ -29,7 +29,8 @@
                 EmployeeSurname="{Binding EmployeeSurname, Mode=TwoWay}"
                 EmployeeAge="{Binding EmployeeAge, Mode=TwoWay}"
                 EmployeePosition="{Binding EmployeePosition, Mode=TwoWay}"
-                Companies="{Binding Companies, Mode=TwoWay}"/>
+                Companies="{Binding Companies, Mode=TwoWay}"
+                behaviors:SelectionChangedBehavior.ComboBoxSelectionChangedCommand="{Binding ComboBoxSelectionChangedCommand}" />
         </DataTemplate>
         <Style x:Key="InsertTemplateStyle" TargetType="{x:Type ContentControl}">
             <Style.Triggers>
@@ -66,6 +67,7 @@
             Grid.Column="1"
             Margin="0,0,20,0"
             Command="{Binding InsertDataButtonClickedCommand}"
+            IsEnabled="{Binding IsInsertEnabled}"
             Content="Insert" />
     </Grid>
 </Window>

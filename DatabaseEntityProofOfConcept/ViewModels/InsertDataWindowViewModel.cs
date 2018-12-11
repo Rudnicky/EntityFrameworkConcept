@@ -42,6 +42,20 @@ namespace DatabaseEntityProofOfConcept.ViewModels
             }
         }
 
+        private bool _isInsertEnabled;
+        public bool IsInsertEnabled
+        {
+            get { return _isInsertEnabled; }
+            set
+            {
+                if (_isInsertEnabled != value)
+                {
+                    _isInsertEnabled = value;
+                    OnPropertyChanged(nameof(IsInsertEnabled));
+                }
+            }
+        }
+
         private string _companyName;
         public string CompanyName
         {
@@ -151,6 +165,18 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                 }));
             }
         }
+
+        private ICommand _comboBoxSelectionChangedCommand;
+        public ICommand ComboBoxSelectionChangedCommand
+        {
+            get
+            {
+                return _comboBoxSelectionChangedCommand ?? (_comboBoxSelectionChangedCommand = new RelayCommand<object>(x =>
+                {
+                    ComboBoxSelectionChanged(x);
+                }));
+            }
+        }
         #endregion
 
         #region Constructor
@@ -220,9 +246,19 @@ namespace DatabaseEntityProofOfConcept.ViewModels
             }
         }
 
+        private void ComboBoxSelectionChanged(object obj)
+        {
+            if (obj != null)
+            {
+                IsInsertEnabled = true;
+            }
+        }
+
         private void SelectionChanged(object obj)
         {
             CurrentEntity = ConvertToEntities<Entities>(obj);
+
+            IsInsertEnabled = false;
         }
 
         public T ConvertToEntities<T>(object obj) 

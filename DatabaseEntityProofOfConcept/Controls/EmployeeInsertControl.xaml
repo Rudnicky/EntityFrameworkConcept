@@ -29,7 +29,9 @@
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EmployeeSurname, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding EmployeeAge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding EmployeePosition, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
-        <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Companies, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+        <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Companies, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                  SelectionChanged="ComboBox_SelectionChanged"
+                  SelectedItem="{Binding SelectedCompany, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />

@@ -26,7 +26,7 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
         private void GetButton_Clicked()
         {
-            var dupson = _companyRepository.GetAll();
+            // TODO:
         }
         #endregion
 
