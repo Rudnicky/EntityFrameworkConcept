@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DatabaseEntityProofOfConcept.Views
+namespace DatabaseEntityProofOfConcept.Controls
 {
     /// <summary>
     /// Interaction logic for EmployeeInsertControl.xaml

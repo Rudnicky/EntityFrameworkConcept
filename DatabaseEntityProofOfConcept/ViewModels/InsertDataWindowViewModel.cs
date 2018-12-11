@@ -1,7 +1,6 @@
 ﻿using DatabaseEntityProofOfConcept.Commands;
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
@@ -12,16 +11,44 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         private readonly ICompanyRepository _companyRepository;
         private readonly IEmployeeRepository _employeeRepository;
 
-        private ObservableCollection<BaseEntity> _typeOfEntitiesCollection = new ObservableCollection<BaseEntity>();
-        public ObservableCollection<BaseEntity> TypeOfEntitiesCollection
+        private Entities _currentEntity;
+        public Entities CurrentEntity
         {
-            get { return _typeOfEntitiesCollection; }
+            get { return _currentEntity; }
             set
             {
-                if (_typeOfEntitiesCollection != value)
+                if (_currentEntity != value)
                 {
-                    _typeOfEntitiesCollection = value;
-                    OnPropertyChanged(nameof(TypeOfEntitiesCollection));
+                    _currentEntity = value;
+                    OnPropertyChanged(nameof(CurrentEntity));
+                }
+            }
+        }
+
+        private string _companyName;
+        public string CompanyName
+        {
+            get { return _companyName; }
+            set
+            {
+                if (_companyName != value)
+                {
+                    _companyName = value;
+                    OnPropertyChanged(nameof(CompanyName));
+                }
+            }
+        }
+
+        private string _companyIndustry;
+        public string CompanyIndustry
+        {
+            get { return _companyIndustry; }
+            set
+            {
+                if (_companyIndustry != value)
+                {
+                    _companyIndustry = value;
+                    OnPropertyChanged(nameof(CompanyIndustry));
                 }
             }
         }
@@ -46,33 +73,18 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         {
             this._companyRepository = companyRepository;
             this._employeeRepository = employeeRepository;
-
-            SetupEntitiesCollection();
         }
         #endregion
 
         #region Private Methods
         private void InsertDataButton_Clicked()
         {
+            var company = new Company();
+            company.Name = CompanyName;
+            company.Industry = CompanyIndustry;
 
-        }
-
-        private void SetupEntitiesCollection()
-        {
-            TypeOfEntitiesCollection.Add(InstanceOfEntity(new Employee()));
-            TypeOfEntitiesCollection.Add(InstanceOfEntity(new Company()));
-        }
-
-        private BaseEntity InstanceOfEntity(BaseEntity entity)
-        {
-            entity.ClassName = GetEntityClassName(entity);
-            return entity;
-        }
-
-        private string GetEntityClassName(BaseEntity entity)
-        {
-            string fullClassName = entity.GetType().ToString();
-            return fullClassName.Substring(fullClassName.IndexOf('.') + 1);
+            _companyRepository.Insert(company);
+            _companyRepository.Save();
         }
         #endregion
     }

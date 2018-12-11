@@ -1,6 +1,5 @@
 ﻿using DatabaseEntityProofOfConcept.Commands;
 using DatabaseEntityProofOfConcept.Interfaces;
-using System;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
