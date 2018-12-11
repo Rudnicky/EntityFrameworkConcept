@@ -2,6 +2,7 @@
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -23,6 +24,20 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                 {
                     _currentEntity = value;
                     OnPropertyChanged(nameof(CurrentEntity));
+                }
+            }
+        }
+
+        private ObservableCollection<Company> _companies = new ObservableCollection<Company>();
+        public ObservableCollection<Company> Companies
+        {
+            get { return _companies; }
+            set
+            {
+                if (_companies != value)
+                {
+                    _companies = value;
+                    OnPropertyChanged(nameof(Companies));
                 }
             }
         }
@@ -143,6 +158,8 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         {
             this._companyRepository = companyRepository;
             this._employeeRepository = employeeRepository;
+
+            GetAllCompanies();
         }
         #endregion
 
@@ -189,6 +206,18 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
             _employeeRepository.Insert(employee);
             _employeeRepository.Save();
+        }
+
+        private void GetAllCompanies()
+        {
+            var companies = _companyRepository.GetAll().ToList();
+            if (companies != null)
+            {
+                foreach (var company in companies)
+                {
+                    Companies.Add(company);
+                }
+            }
         }
 
         private void SelectionChanged(object obj)

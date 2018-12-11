@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DatabaseEntityProofOfConcept.Controls
@@ -37,6 +38,14 @@ namespace DatabaseEntityProofOfConcept.Controls
         }
         public static readonly DependencyProperty EmployeePositionProperty =
             DependencyProperty.Register("EmployeePosition", typeof(string), typeof(EmployeeInsertControl), new PropertyMetadata(string.Empty));
+
+        public IEnumerable Companies
+        {
+            get { return (IEnumerable)GetValue(CompaniesProperty); }
+            set { SetValue(CompaniesProperty, value); }
+        }
+        public static readonly DependencyProperty CompaniesProperty =
+            DependencyProperty.Register("Companies", typeof(IEnumerable), typeof(EmployeeInsertControl), new PropertyMetadata(null));
         #endregion
 
         #region Constructor

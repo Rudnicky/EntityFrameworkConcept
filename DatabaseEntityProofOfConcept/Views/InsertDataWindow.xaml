@@ -28,7 +28,8 @@
                 EmployeeName="{Binding EmployeeName, Mode=TwoWay}"
                 EmployeeSurname="{Binding EmployeeSurname, Mode=TwoWay}"
                 EmployeeAge="{Binding EmployeeAge, Mode=TwoWay}"
-                EmployeePosition="{Binding EmployeePosition, Mode=TwoWay}" />
+                EmployeePosition="{Binding EmployeePosition, Mode=TwoWay}"
+                Companies="{Binding Companies, Mode=TwoWay}"/>
         </DataTemplate>
         <Style x:Key="InsertTemplateStyle" TargetType="{x:Type ContentControl}">
             <Style.Triggers>
