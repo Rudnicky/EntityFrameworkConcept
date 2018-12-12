@@ -132,6 +132,7 @@
     <Compile Include="Utils\Entities.cs" />
     <Compile Include="Utils\GenericRepository.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\DeleteRecordsWindowViewModel.cs" />
     <Compile Include="ViewModels\DisplayRecordsWindowViewModel.cs" />
     <Compile Include="ViewModels\InsertDataWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

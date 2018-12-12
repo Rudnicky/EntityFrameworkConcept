@@ -37,7 +37,6 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                     OnPropertyChanged(nameof(Companies));
                 }
             }
-
         }
 
         private ObservableCollection<Employee> _employees = new ObservableCollection<Employee>();
@@ -52,7 +51,6 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                     OnPropertyChanged(nameof(Employees));
                 }
             }
-
         }
         #endregion
 
