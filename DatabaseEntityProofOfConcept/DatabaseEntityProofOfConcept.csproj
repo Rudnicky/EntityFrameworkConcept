@@ -180,6 +180,7 @@
     <Compile Include="Controls\CompanyInsertControl.xaml.cs">
       <DependentUpon>CompanyInsertControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\RootDataViewModel.cs" />
     <Compile Include="Views\DisplayRecordsWindow.xaml.cs">
       <DependentUpon>DisplayRecordsWindow.xaml</DependentUpon>
     </Compile>

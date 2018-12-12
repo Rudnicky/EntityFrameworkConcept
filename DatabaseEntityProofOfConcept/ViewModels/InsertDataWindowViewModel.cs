@@ -2,45 +2,16 @@
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
 {
-    public class InsertDataWindowViewModel : BaseViewModel
+    public class InsertDataWindowViewModel : RootDataViewModel
     {
         #region Fields & Properties
         private readonly ICompanyRepository _companyRepository;
         private readonly IEmployeeRepository _employeeRepository;
-
-        private Entities _currentEntity;
-        public Entities CurrentEntity
-        {
-            get { return _currentEntity; }
-            set
-            {
-                if (_currentEntity != value)
-                {
-                    _currentEntity = value;
-                    OnPropertyChanged(nameof(CurrentEntity));
-                }
-            }
-        }
-
-        private ObservableCollection<Company> _companies = new ObservableCollection<Company>();
-        public ObservableCollection<Company> Companies
-        {
-            get { return _companies; }
-            set
-            {
-                if (_companies != value)
-                {
-                    _companies = value;
-                    OnPropertyChanged(nameof(Companies));
-                }
-            }
-        }
 
         private bool _isInsertEnabled;
         public bool IsInsertEnabled
@@ -181,11 +152,15 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
         #region Constructor
         public InsertDataWindowViewModel(ICompanyRepository companyRepository, IEmployeeRepository employeeRepository)
+            : base (companyRepository, employeeRepository)
         {
             this._companyRepository = companyRepository;
             this._employeeRepository = employeeRepository;
 
-            GetAllCompanies();
+            base.GetAllCompanies();
+
+            // TODO: validation must be done in different way
+            IsInsertEnabled = true;
         }
         #endregion
 
@@ -232,18 +207,6 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
             _employeeRepository.Insert(employee);
             _employeeRepository.Save();
-        }
-
-        private void GetAllCompanies()
-        {
-            var companies = _companyRepository.GetAll().ToList();
-            if (companies != null)
-            {
-                foreach (var company in companies)
-                {
-                    Companies.Add(company);
-                }
-            }
         }
 
         private void ComboBoxSelectionChanged(object obj)
