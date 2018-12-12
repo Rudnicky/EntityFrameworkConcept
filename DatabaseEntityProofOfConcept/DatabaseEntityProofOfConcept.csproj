@@ -98,6 +98,12 @@
     <Compile Include="Company.cs">
       <DependentUpon>CustomModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CompanyDisplayControl.xaml.cs">
+      <DependentUpon>CompanyDisplayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmployeeDisplayControl.xaml.cs">
+      <DependentUpon>EmployeeDisplayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,7 +135,15 @@
     <Compile Include="ViewModels\DisplayRecordsWindowViewModel.cs" />
     <Compile Include="ViewModels\InsertDataWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Page Include="Controls\CompanyDisplayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CompanyInsertControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EmployeeDisplayControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
