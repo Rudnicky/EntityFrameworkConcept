@@ -169,10 +169,10 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         {
             switch (CurrentEntity)
             {
-                case Entities.Company:
+                case Utils.Entities.Company:
                     InsertCompany();
                     break;
-                case Entities.Employee:
+                case Utils.Entities.Employee:
                     InsertEmployee();
                     break;
                 default:

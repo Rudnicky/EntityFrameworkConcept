@@ -45,12 +45,50 @@ namespace DatabaseEntityProofOfConcept.Behaviors
         }
         #endregion
 
-        #region Code-Specific Combobox SelectionChanged
+        #region Combobox SelectionChanged
         public static readonly DependencyProperty ComboBoxSelectionChangedCommandProperty =
             DependencyProperty.RegisterAttached("ComboBoxSelectionChangedCommand", typeof(ICommand), typeof(SelectionChangedBehavior),
                 new FrameworkPropertyMetadata(new PropertyChangedCallback(ComboBoxSelectionChangedCommandChanged)));
 
         private static void ComboBoxSelectionChangedCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var comboBox = (ComboBox)d;
+            if (comboBox != null)
+            {
+                comboBox.SelectionChanged += ComboBox_SelectionChanged;
+            }
+        }
+
+        private static void ComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            var comboBox = (ComboBox)sender;
+            if (comboBox != null)
+            {
+                ICommand command = GetComboBoxSelectionChangedCommand(comboBox);
+                if (command != null)
+                {
+                    command.Execute(comboBox.SelectedItem);
+                }
+            }
+        }
+
+        public static void SetComboBoxSelectionChangedCommand(UIElement element, ICommand value)
+        {
+            element.SetValue(ComboBoxSelectionChangedCommandProperty, value);
+        }
+
+        public static ICommand GetComboBoxSelectionChangedCommand(UIElement element)
+        {
+            return (ICommand)element.GetValue(ComboBoxSelectionChangedCommandProperty);
+        }
+        #endregion
+
+        #region Code-Specific Combobox SelectionChanged
+        public static readonly DependencyProperty EmployeeComboBoxSelectionChangedCommandProperty =
+            DependencyProperty.RegisterAttached("EmployeeComboBoxSelectionChangedCommand", typeof(ICommand), typeof(SelectionChangedBehavior),
+                new FrameworkPropertyMetadata(new PropertyChangedCallback(EmployeeComboBoxSelectionChangedCommandChanged)));
+
+        private static void EmployeeComboBoxSelectionChangedCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var userControl = (EmployeeInsertControl)d;
             if (userControl != null)
@@ -64,7 +102,7 @@ namespace DatabaseEntityProofOfConcept.Behaviors
             var userControl = (EmployeeInsertControl)sender;
             if (userControl != null)
             {
-                ICommand command = GetComboBoxSelectionChangedCommand(userControl);
+                ICommand command = GetEmployeeComboBoxSelectionChangedCommand(userControl);
                 if (command != null)
                 {
                     command.Execute(userControl.SelectedCompany);
@@ -72,14 +110,14 @@ namespace DatabaseEntityProofOfConcept.Behaviors
             }
         }
 
-        public static void SetComboBoxSelectionChangedCommand(UIElement element, ICommand value)
+        public static void SetEmployeeComboBoxSelectionChangedCommand(UIElement element, ICommand value)
         {
-            element.SetValue(ComboBoxSelectionChangedCommandProperty, value);
+            element.SetValue(EmployeeComboBoxSelectionChangedCommandProperty, value);
         }
 
-        public static ICommand GetComboBoxSelectionChangedCommand(UIElement element)
+        public static ICommand GetEmployeeComboBoxSelectionChangedCommand(UIElement element)
         {
-            return (ICommand)element.GetValue(ComboBoxSelectionChangedCommandProperty);
+            return (ICommand)element.GetValue(EmployeeComboBoxSelectionChangedCommandProperty);
         }
         #endregion
     }

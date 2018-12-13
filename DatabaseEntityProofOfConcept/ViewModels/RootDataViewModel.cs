@@ -52,6 +52,20 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                 }
             }
         }
+
+        private ObservableCollection<BaseEntity> _entities = new ObservableCollection<BaseEntity>();
+        public ObservableCollection<BaseEntity> Entities
+        {
+            get { return _entities; }
+            set
+            {
+                if (_entities != value)
+                {
+                    _entities = value;
+                    OnPropertyChanged(nameof(Entities));
+                }
+            }
+        }
         #endregion
 
         #region Constructor
@@ -84,6 +98,21 @@ namespace DatabaseEntityProofOfConcept.ViewModels
                 {
                     Employees.Add(employee);
                 }
+            }
+        }
+
+        protected void SetupEntitiesCollection()
+        {
+            switch (CurrentEntity)
+            {
+                case Utils.Entities.Company:
+                    Entities = new ObservableCollection<BaseEntity>(Companies);
+                    break;
+                case Utils.Entities.Employee:
+                    Entities = new ObservableCollection<BaseEntity>(Employees);
+                    break;
+                default:
+                    break;
             }
         }
         #endregion

@@ -30,7 +30,7 @@
                 EmployeeAge="{Binding EmployeeAge, Mode=TwoWay}"
                 EmployeePosition="{Binding EmployeePosition, Mode=TwoWay}"
                 Companies="{Binding Companies, Mode=TwoWay}"
-                behaviors:SelectionChangedBehavior.ComboBoxSelectionChangedCommand="{Binding ComboBoxSelectionChangedCommand}" />
+                behaviors:SelectionChangedBehavior.EmployeeComboBoxSelectionChangedCommand="{Binding ComboBoxSelectionChangedCommand}" />
         </DataTemplate>
         <Style x:Key="InsertTemplateStyle" TargetType="{x:Type ContentControl}">
             <Style.Triggers>

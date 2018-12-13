@@ -1,6 +1,7 @@
 ﻿using DatabaseEntityProofOfConcept.Commands;
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Views;
+using System.Windows;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
@@ -89,12 +90,14 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
         private void DeleteButton_Clicked()
         {
-            // TODO:
+            var deleteWindow = new DeleteWindow();
+            deleteWindow.DataContext = new DeleteWindowViewModel(_companyRepository, _employeeRepository);
+            deleteWindow.Show();
         }
 
         private void ExitButton_Clicked()
         {
-            // TODO:
+            Application.Current.Shutdown();
         }
         #endregion
     }
