@@ -1,8 +1,13 @@
-﻿using DatabaseEntityProofOfConcept.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DatabaseEntityProofOfConcept.Interfaces;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
 {
-    public class DeleteRecordsWindowViewModel : RootDataViewModel
+    public class DeleteWindowViewModel : RootDataViewModel
     {
         #region Fields & Properties
         private readonly ICompanyRepository _companyRepository;
@@ -10,7 +15,7 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         #endregion
 
         #region Constructor
-        public DeleteRecordsWindowViewModel(ICompanyRepository companyRepository, IEmployeeRepository employeeRepository) 
+        public DeleteWindowViewModel(ICompanyRepository companyRepository, IEmployeeRepository employeeRepository) 
             : base(companyRepository, employeeRepository)
         {
             this._companyRepository = companyRepository;

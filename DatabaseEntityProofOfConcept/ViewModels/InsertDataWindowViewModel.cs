@@ -1,7 +1,7 @@
 ﻿using DatabaseEntityProofOfConcept.Commands;
+using DatabaseEntityProofOfConcept.Extensions;
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
-using System;
 using System.Linq;
 using System.Windows.Input;
 
@@ -219,15 +219,9 @@ namespace DatabaseEntityProofOfConcept.ViewModels
 
         private void SelectionChanged(object obj)
         {
-            CurrentEntity = ConvertToEntities<Entities>(obj);
+            CurrentEntity = GlobalConverters.ConvertToEntities<Entities>(obj);
 
             IsInsertEnabled = false;
-        }
-
-        public T ConvertToEntities<T>(object obj) 
-        {
-            T enumValue = (T)Enum.Parse(typeof(T), obj.ToString());
-            return enumValue;
         }
         #endregion
     }

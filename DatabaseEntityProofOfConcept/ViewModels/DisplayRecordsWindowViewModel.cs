@@ -1,18 +1,13 @@
 ﻿using DatabaseEntityProofOfConcept.Commands;
+using DatabaseEntityProofOfConcept.Extensions;
 using DatabaseEntityProofOfConcept.Interfaces;
 using DatabaseEntityProofOfConcept.Utils;
-using System;
 using System.Windows.Input;
 
 namespace DatabaseEntityProofOfConcept.ViewModels
 {
     public class DisplayRecordsWindowViewModel : RootDataViewModel, IDisplayRecordsWindowViewModel
     {
-        #region Fields & Properties
-        private readonly ICompanyRepository _companyRepository;
-        private readonly IEmployeeRepository _employeeRepository;
-        #endregion
-
         #region Commands
         private ICommand _selectionChangedCommand;
         public ICommand SelectionChangedCommand
@@ -31,9 +26,6 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         public DisplayRecordsWindowViewModel(ICompanyRepository companyRepository, IEmployeeRepository employeeRepository)
             : base(companyRepository, employeeRepository)
         {
-            this._companyRepository = companyRepository;
-            this._employeeRepository = employeeRepository;
-
             base.GetAllCompanies();
             base.GettAllEmployees();
         }
@@ -42,13 +34,7 @@ namespace DatabaseEntityProofOfConcept.ViewModels
         #region Private Methods
         private void SelectionChanged(object obj)
         {
-            CurrentEntity = ConvertToEntities<Entities>(obj);
-        }
-
-        public T ConvertToEntities<T>(object obj)
-        {
-            T enumValue = (T)Enum.Parse(typeof(T), obj.ToString());
-            return enumValue;
+            CurrentEntity = GlobalConverters.ConvertToEntities<Entities>(obj);
         }
         #endregion
     }
