@@ -17,9 +17,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="2" Text=":: Company ::" />
-        <TextBlock Grid.Row="1" Text="Name: " />
-        <TextBlock Grid.Row="2" Text="Industry: " />
+        <TextBlock Grid.ColumnSpan="2" Text=":: Company ::" Style="{DynamicResource SecondaryTitleStyle}" />
+        <TextBlock Grid.Row="1" Text="Name: " Style="{DynamicResource GridTextBlockStyle}" />
+        <TextBlock Grid.Row="2" Text="Industry: " Style="{DynamicResource GridTextBlockStyle}" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CompanyName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CompanyIndustry, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
     </Grid>

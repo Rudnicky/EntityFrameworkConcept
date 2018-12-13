@@ -43,7 +43,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="List of Entities" Grid.Column="1" />
+        <TextBlock Text="List of Entities" Grid.Column="1" Style="{DynamicResource SecondaryTitleStyle}" />
         <ListView
             Grid.Row="1"
             behaviors:SelectionChangedBehavior.SelectionChangedCommand="{Binding SelectionChangedCommand}"

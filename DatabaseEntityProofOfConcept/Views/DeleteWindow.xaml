@@ -23,13 +23,15 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="2" Text=":: Delete Window ::" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Collection: " />
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Entity: " />
+        <TextBlock Grid.ColumnSpan="2" Text=":: Delete Window ::" Style="{DynamicResource SecondaryTitleStyle}" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Collection: " Style="{DynamicResource GridTextBlockStyle}" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Entity: " Style="{DynamicResource GridTextBlockStyle}" />
         <ComboBox Grid.Row="2" Grid.Column="1" 
+                  Margin="0,2,20,2"
                   ItemsSource="{enumValues:EnumValues utils:Entities}"
                   behaviors:SelectionChangedBehavior.ComboBoxSelectionChangedCommand="{Binding CollectionComboBoxSelectionChangedCommand}" />
         <ComboBox Grid.Row="3" Grid.Column="1" 
+                  Margin="0,2,20,2"
                   ItemsSource="{Binding Entities}"
                   IsEnabled="{Binding IsTypeOfEntityPicked}"
                   SelectedItem="{Binding SelectedEntity}"
@@ -40,6 +42,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Delete" Command="{Binding DeleteButtonClickedCommand}" IsEnabled="{Binding IsDeleteButtonEnabled}" />
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Delete" 
+                Command="{Binding DeleteButtonClickedCommand}" 
+                IsEnabled="{Binding IsDeleteButtonEnabled}" />
     </Grid>
 </Window>

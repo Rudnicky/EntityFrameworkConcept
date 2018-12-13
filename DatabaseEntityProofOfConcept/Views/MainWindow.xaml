@@ -13,10 +13,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text=":: Entity Framework Example ::" Style="{DynamicResource TitleStyle}" />
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <Button Content="GET" Command="{Binding GetButtonClickedCommand}" Style="{DynamicResource MainWindowButtonStyle}" />
-            <Button Content="INSERT" Command="{Binding InsertButtonClickedCommand}" Style="{DynamicResource MainWindowButtonStyle}" Margin="0,2,0,2" />
-            <Button Content="DELETE" Command="{Binding DeleteButtonClickedCommand}" Style="{DynamicResource MainWindowButtonStyle}" Margin="0,0,0,2" />
-            <Button Content="EXIT" Command="{Binding ExitButtonClickedCommand}" Style="{DynamicResource MainWindowButtonStyle}" />
+            <Button Content="GET" Command="{Binding GetButtonClickedCommand}" />
+            <Button Content="INSERT" Command="{Binding InsertButtonClickedCommand}" Margin="0,2,0,2" />
+            <Button Content="DELETE" Command="{Binding DeleteButtonClickedCommand}" Margin="0,0,0,2" />
+            <Button Content="EXIT" Command="{Binding ExitButtonClickedCommand}" />
         </StackPanel>
     </Grid>
 </Window>
