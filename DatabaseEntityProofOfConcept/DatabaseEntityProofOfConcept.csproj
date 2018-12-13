@@ -128,10 +128,10 @@
       <DependentUpon>CustomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\BaseEntity.cs" />
-    <Compile Include="Utils\CompanyRepository.cs" />
-    <Compile Include="Utils\EmployeeRepository.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Utils\Entities.cs" />
-    <Compile Include="Utils\GenericRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DeleteWindowViewModel.cs" />
     <Compile Include="ViewModels\DisplayRecordsWindowViewModel.cs" />
